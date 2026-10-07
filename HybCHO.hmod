@@ -1,0 +1,150 @@
+%--------------------------------------------------------------------------
+% hybrid model definition data structure
+
+%Timespan
+CHO.time.tspan=0:0.5:7.5;
+
+%Species--------------------------------------------------------------------
+CHO.nspecies=7
+CHO.species(1).id="VCD"
+CHO.species(1).val=1
+CHO.species(1).compartment="V"
+CHO.species(1).fixed=0
+CHO.species(1).min= 0;
+CHO.species(1).max= 5;
+CHO.species(1).isres=1;
+CHO.species(2).id="EGLC"
+CHO.species(2).val=1
+CHO.species(2).compartment="V"
+CHO.species(2).fixed=0
+CHO.species(2).min= 0;
+CHO.species(2).max= 25;
+CHO.species(2).isres=1;
+CHO.species(3).id="ELAC"
+CHO.species(3).val=1
+CHO.species(3).compartment="V"
+CHO.species(3).fixed=0
+CHO.species(3).min= 0;
+CHO.species(3).max= 25;
+CHO.species(3).isres=1;
+CHO.species(4).id="EGLN"
+CHO.species(4).val=1
+CHO.species(4).compartment="V"
+CHO.species(4).fixed=0
+CHO.species(4).min= 0;
+CHO.species(4).max= 4;
+CHO.species(4).isres=1;
+CHO.species(5).id="EGLU"
+CHO.species(5).val=1
+CHO.species(5).compartment="V"
+CHO.species(5).fixed=0
+CHO.species(5).min= 0;
+CHO.species(5).max= 15;
+CHO.species(5).isres=1;
+CHO.species(6).id="ENH4"
+CHO.species(6).val=1
+CHO.species(6).compartment="V"
+CHO.species(6).fixed=0
+CHO.species(6).min= 0;
+CHO.species(6).max= 8;
+CHO.species(6).isres=1;
+CHO.species(7).id="mAB"
+CHO.species(7).val=1
+CHO.species(7).compartment="V"
+CHO.species(7).fixed=0
+CHO.species(7).min= 0;
+CHO.species(7).max= 80;
+CHO.species(7).isres=1;
+
+
+%Compartments----------------------------------------------------
+CHO.ncompartments=1
+CHO.compartments(1).id="V"
+CHO.compartments(1).val=2
+CHO.compartments(1).min= 0;
+CHO.compartments(1).max= 4;
+CHO.compartments(1).isres=0;
+
+%Parameters------------------------------------------------------ 
+CHO.nparameters=9
+CHO.parameters(1).id="mu"
+CHO.parameters(1).val=1
+CHO.parameters(1).reaction="global"
+CHO.parameters(1).fixed=0
+CHO.parameters(2).id="vGLC"
+CHO.parameters(2).val=1
+CHO.parameters(2).reaction="global"
+CHO.parameters(2).fixed=0
+CHO.parameters(3).id="vLAC"
+CHO.parameters(3).val=1
+CHO.parameters(3).reaction="global"
+CHO.parameters(3).fixed=0
+CHO.parameters(4).id="vGLN"
+CHO.parameters(4).val=1
+CHO.parameters(4).reaction="global"
+CHO.parameters(4).fixed=0
+CHO.parameters(5).id="vGLU"
+CHO.parameters(5).val=1
+CHO.parameters(5).reaction="global"
+CHO.parameters(5).fixed=0
+CHO.parameters(6).id="vNH4"
+CHO.parameters(6).val=1
+CHO.parameters(6).reaction="global"
+CHO.parameters(6).fixed=0
+CHO.parameters(7).id="vmAB"
+CHO.parameters(7).val=1
+CHO.parameters(7).reaction="global"
+CHO.parameters(7).fixed=0
+CHO.parameters(8).id="GLCfeed"
+CHO.parameters(8).val=1893
+CHO.parameters(8).reaction="global"
+CHO.parameters(8).fixed=1
+CHO.parameters(9).id="GLNfeed"
+CHO.parameters(9).val=24
+CHO.parameters(9).reaction="global"
+CHO.parameters(9).fixed=1
+
+%Reactions------------------------------------------------
+CHO.nreaction=7
+CHO.reaction(1).id="rVCD"
+CHO.reaction(1).rate="mu*VCD"
+CHO.reaction(1).rVCD="[1,0,0,0,0,0,0]"
+CHO.reaction(2).id="rGLC"
+CHO.reaction(2).rate="-vGLC*VCD + D*GLCfeed"
+CHO.reaction(2).rGLC="[0,1,0,0,0,0,0]"
+CHO.reaction(3).id="rLAC"
+CHO.reaction(3).rate="vLAC*VCD"
+CHO.reaction(3).rLAC="[0,0,1,0,0,0,0]"
+CHO.reaction(4).id="rGLN"
+CHO.reaction(4).rate="-vGLN*VCD + D*GLNfeed"
+CHO.reaction(4).rGLN="[0,0,0,1,0,0,0]"
+CHO.reaction(5).id="rGLU"
+CHO.reaction(5).rate="vGLU*VCD"
+CHO.reaction(5).rGLU="[0,0,0,0,1,0,0]"
+CHO.reaction(6).id="rNH4"
+CHO.reaction(6).rate="vNH4*VCD"
+CHO.reaction(6).rNH4="[0,0,0,0,0,1,0]"
+CHO.reaction(7).id="rmAB"
+CHO.reaction(7).rate="vmAB*VCD*Induc"
+CHO.reaction(7).rmAB="[0,0,0,0,0,0,1]"
+
+
+% Assignment rules------------------------------------
+CHO.nruleAss=1
+CHO.ruleAss(1).id="D"
+CHO.ruleAss(1).val="Feed/V"
+
+% Events----------------------------------------------
+CHO.nevents=0
+CHO.fun_event=[]; 
+
+
+%Rate rules---------------------------------------------------
+CHO.nraterules=1
+CHO.raterules(1).id="V"
+CHO.raterules(1).val="D*V"
+CHO.raterules(1).min= 0;
+CHO.raterules(1).max= 10;
+CHO.raterules(1).isres= 0;
+
+end
